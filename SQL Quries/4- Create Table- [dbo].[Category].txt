@@ -1,0 +1,17 @@
+CREATE TABLE Category
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL,
+	CreatedBy INT NOT NULL DEFAULT 0,
+	CreatedOnUtc DATETIME NOT NULL,
+	UpdatedBy INT NOT NULL DEFAULT 0,
+	UpdatedOnUtc DATETIME NULL,
+	Deleted BIT NOT NULL DEFAULT 0
+)
+
+insert into Category ([Name], CreatedBy, CreatedOnUtc)
+values 
+('Electronics', 1, GETUTCDATE()),
+('Clothes', 1, GETUTCDATE()),
+('Transport', 1, GETUTCDATE()),
+('Crockery', 1, GETUTCDATE())
