@@ -16,11 +16,51 @@ namespace ECommerceSite.Controllers
     {
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
 
+       
         // GET: Products
         public ActionResult Index()
         {
-           
+            var products = db.Products.Where(x => !x.Deleted).ToList();
+            var categories = db.Categories.Where(x => !x.Deleted).ToList();
+
             var productlist = new List<ProductModel>();
+            
+            if (products != null && products.Any())
+            {
+                foreach (var product in products)
+                {
+                    var productModel = new ProductModel();
+
+                    productModel.Id = product.Id;
+                    productModel.Name = product.Name;
+                    productModel.Description = product.Description;
+                    productModel.CategoryId = product.CategoryId;
+                    if (product.CategoryId > 0)
+                    {
+                        if (categories != null && categories.Any())
+                        {
+                            var category = categories.Where(x => x.Id == product.CategoryId).FirstOrDefault();
+                            if (category != null)
+                            {
+                                productModel.CategoryName = category.Name;
+                            }
+                        }
+                    }
+                    productModel.SupplierId = product.SupplierId;
+                    productModel.SalePrice = product.SalePrice;
+                    productModel.CostPrice = product.CostPrice;
+                    productModel.CreatedBy = product.CreatedBy;
+                    productModel.CreatedOnUtc = product.CreatedOnUtc;
+                    productModel.UpdatedBy = product.UpdatedBy;
+                    productModel.UpdatedOnUtc = product.UpdatedOnUtc;
+                    productModel.SupplierName = "Mushtaq";
+                    productModel.Deleted = product.Deleted;
+                    productModel.OutOfStock = product.OutOfStock;
+
+                    productlist.Add(productModel);
+                }
+            }
+             
             return View(productlist);
         }
 
@@ -40,10 +80,12 @@ namespace ECommerceSite.Controllers
             return View(product);
         }
 
+        #region Create
+
         // GET: Products/Create
         public ActionResult Create()
         {
-            
+
             return View();
         }
 
@@ -54,7 +96,7 @@ namespace ECommerceSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductModel model)
         {
-            
+
             if (ModelState.IsValid)
             {
                 Product product = new Product();
@@ -63,10 +105,10 @@ namespace ECommerceSite.Controllers
                 product.CostPrice = model.CostPrice;
                 product.SalePrice = model.SalePrice;
                 product.OutOfStock = model.OutOfStock;
-                
+
                 product.CreatedOnUtc = DateTime.UtcNow;
                 product.CreatedBy = 1;
-               
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -74,6 +116,10 @@ namespace ECommerceSite.Controllers
 
             return View(model);
         }
+
+        #endregion
+
+        #region Eidt
 
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
@@ -113,6 +159,10 @@ namespace ECommerceSite.Controllers
             }
             return View(product);
         }
+
+        #endregion
+
+        #region Delete
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -156,5 +206,8 @@ namespace ECommerceSite.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #endregion
+
     }
 }
