@@ -20,6 +20,11 @@ namespace ECommerceSite.Controllers
         // GET: Products
         public ActionResult Index()
         {
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
+
             var products = db.Products.Where(x => !x.Deleted).ToList();
             var categories = db.Categories.Where(x => !x.Deleted).ToList();
 
@@ -67,7 +72,11 @@ namespace ECommerceSite.Controllers
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
-            
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,7 +94,10 @@ namespace ECommerceSite.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
             return View();
         }
 
@@ -96,7 +108,10 @@ namespace ECommerceSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductModel model)
         {
-
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
             if (ModelState.IsValid)
             {
                 Product product = new Product();
