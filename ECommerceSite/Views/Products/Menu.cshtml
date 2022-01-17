@@ -44,7 +44,7 @@
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart addToCart" data-productId="@item.Id" style="cursor: pointer">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -58,4 +58,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    function intIt(el) {
+        return isNaN(parseInt(el)) ? 0 : parseInt(el)
+    }
+
+    $(document).on("click", ".addToCart", function () {
+        var id = intIt($(this).attr('data-productId'));
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@(Url.Action("AddToCart", "Products"))',
+            data: {
+                productId: id,
+                qty: 1
+            },
+            success: function (data) {
+                console.log(data);
+                $(".badge").html(data);
+            }
+        });
+    });
+</script>
 <!-- End Products  -->

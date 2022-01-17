@@ -279,6 +279,22 @@ namespace ECommerceSite.Controllers
             return View(productlist);
         }
 
+        [HttpPost]
+        public JsonResult AddToCart(int productId, int qty)
+        {
+            if (productId > 0 && qty > 0)
+            {
+            }
+            else
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
+
+
+            return Json(5, JsonRequestBehavior.AllowGet);
+        }
+
+
         #endregion
     }
 }
