@@ -16,7 +16,10 @@ namespace ECommerceSite.Controllers
     {
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
 
-       
+        #region AdminArea
+
+        #region List
+
         // GET: Products
         public ActionResult Index()
         {
@@ -29,7 +32,7 @@ namespace ECommerceSite.Controllers
             var categories = db.Categories.Where(x => !x.Deleted).ToList();
 
             var productlist = new List<ProductModel>();
-            
+
             if (products != null && products.Any())
             {
                 foreach (var product in products)
@@ -65,7 +68,7 @@ namespace ECommerceSite.Controllers
                     productlist.Add(productModel);
                 }
             }
-             
+
             return View(productlist);
         }
 
@@ -88,6 +91,8 @@ namespace ECommerceSite.Controllers
             }
             return View(product);
         }
+
+        #endregion
 
         #region Create
 
@@ -224,5 +229,59 @@ namespace ECommerceSite.Controllers
 
         #endregion
 
+        #endregion
+
+        #region CustomerArea
+
+        public ActionResult Menu()
+        {
+            var products = db.Products.Where(x => !x.Deleted).ToList();
+            var categories = db.Categories.Where(x => !x.Deleted).ToList();
+
+            var productlist = new List<ProductModel>();
+
+            if (products != null && products.Any())
+            {
+                foreach (var product in products)
+                {
+                    var productModel = new ProductModel();
+
+                    productModel.Id = product.Id;
+                    productModel.Name = product.Name;
+                    productModel.Description = product.Description;
+                    productModel.CategoryId = product.CategoryId;
+                    if (product.CategoryId > 0)
+                    {
+                        if (categories != null && categories.Any())
+                        {
+                            var category = categories.Where(x => x.Id == product.CategoryId).FirstOrDefault();
+                            if (category != null)
+                            {
+                                productModel.CategoryName = category.Name;
+                            }
+                        }
+                    }
+                    productModel.SupplierId = product.SupplierId;
+                    productModel.SalePrice = product.SalePrice;
+                    productModel.CostPrice = product.CostPrice;
+                    productModel.CreatedBy = product.CreatedBy;
+                    productModel.CreatedOnUtc = product.CreatedOnUtc;
+                    productModel.UpdatedBy = product.UpdatedBy;
+                    productModel.UpdatedOnUtc = product.UpdatedOnUtc;
+                    productModel.SupplierName = "Mushtaq";
+                    productModel.Deleted = product.Deleted;
+                    productModel.OutOfStock = product.OutOfStock;
+
+                    productlist.Add(productModel);
+                }
+            }
+
+            return View(productlist);
+        }
+
+        #endregion
     }
 }
+
+
+// CTRL + M + O
