@@ -18,9 +18,7 @@
         <h2>Index</h2>
     </div>
     <div style="float: right; margin-bottom: 5px">
-        <button type="button" class="btn cur-p btn-primary">Add New Product</button>
-        @*<button type="button" class="btn cur-p btn-secondary">Secondary</button>*@
-        @*<button type="button" class="btn cur-p btn-danger">Danger</button>*@
+        <a href="@Url.Action("Create", "Products")" class="btn cur-p btn-primary">Add New Product</a>
     </div>
 </div>
 <table style="margin-top: 5px" class="table table-striped projects">
@@ -78,8 +76,7 @@
                 <td>
                     <a href="@Url.Action("Edit", "Product", new { id = item.Id })"><i class="fa fa-edit myIconStyle"></i></a>
                     <a href="@Url.Action("Delete", "Product", new { id = item.Id })"><i class="fa fa-trash myIconStyle"></i></a>
-                </td>
-            </tr>
+                </td>            </tr>
         }
     </tbody>
 </table>
