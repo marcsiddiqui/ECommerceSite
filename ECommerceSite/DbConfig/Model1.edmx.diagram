@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="ECommerceSiteModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ECommerceSiteModel.Product" Width="1.5" PointX="3.125" PointY="0.75" />
         <EntityTypeShape EntityType="ECommerceSiteModel.Category" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ECommerceSiteModel.ShoppingCart" Width="1.5" PointX="7.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

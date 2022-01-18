@@ -153,6 +153,9 @@
     <Compile Include="DbConfig\Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConfig\ShoppingCart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConfig\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

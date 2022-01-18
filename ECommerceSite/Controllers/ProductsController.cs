@@ -235,6 +235,11 @@ namespace ECommerceSite.Controllers
 
         public ActionResult Menu()
         {
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
+
             var products = db.Products.Where(x => !x.Deleted).ToList();
             var categories = db.Categories.Where(x => !x.Deleted).ToList();
 
@@ -282,16 +287,43 @@ namespace ECommerceSite.Controllers
         [HttpPost]
         public JsonResult AddToCart(int productId, int qty)
         {
+            var userId = Convert.ToInt32(Session["UserId"]);
+
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return Json("please loging first", JsonRequestBehavior.AllowGet);
+            }
+
             if (productId > 0 && qty > 0)
             {
-            }
-            else
-            {
-                return Json(0, JsonRequestBehavior.AllowGet);
-            }
+                var shopcart = db.ShoppingCarts.Where(x => x.ProductId == productId && x.UserId == userId).FirstOrDefault();
+                if (shopcart != null)
+                {
+                    shopcart.Qauntity = shopcart.Qauntity + qty;
+                    shopcart.UpdatedBy = Convert.ToInt32(Session["UserId"]);
+                    shopcart.UpdatedOnUtc = DateTime.UtcNow;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.ProductId = productId;
+                    shoppingCart.Qauntity = qty;
+                    shoppingCart.UserId = Convert.ToInt32(Session["UserId"]);
+                    shoppingCart.CreatedOnUtc = DateTime.UtcNow;
+                    db.ShoppingCarts.Add(shoppingCart);
+                    db.SaveChanges();
+                }
 
+                var allItems = db.ShoppingCarts.Where(x => x.UserId == userId).ToList();
+                if (allItems != null)
+                {
+                    return Json(allItems.Count.ToString(), JsonRequestBehavior.AllowGet);
+                }
+                return Json("0", JsonRequestBehavior.AllowGet);
 
-            return Json(5, JsonRequestBehavior.AllowGet);
+            }
+            return Json("0", JsonRequestBehavior.AllowGet);
         }
 
 

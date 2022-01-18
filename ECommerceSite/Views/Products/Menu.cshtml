@@ -60,12 +60,8 @@
 </div>
 
 <script>
-    function intIt(el) {
-        return isNaN(parseInt(el)) ? 0 : parseInt(el)
-    }
-
     $(document).on("click", ".addToCart", function () {
-        var id = intIt($(this).attr('data-productId'));
+        var id = $(this).attr("data-productId");
         $.ajax({
             cache: false,
             type: "POST",
@@ -75,10 +71,9 @@
                 qty: 1
             },
             success: function (data) {
-                console.log(data);
                 $(".badge").html(data);
             }
         });
-    });
+    })
 </script>
 <!-- End Products  -->
