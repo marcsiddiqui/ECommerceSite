@@ -327,6 +327,16 @@ namespace ECommerceSite.Controllers
         }
 
 
+        public ActionResult Cart()
+        {
+            if (Authentication.GetSessionDetail() == null)
+            {
+                return RedirectToAction("Login", "Autheticator");
+            }
+
+            return View();
+        }
+
         #endregion
     }
 }
