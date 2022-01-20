@@ -1,0 +1,122 @@
+﻿@model ECommerceSite.Models.UserModel
+
+@{
+    ViewBag.Title = "Sign Up";
+}
+
+<h2>Sign Up</h2>
+<style>
+    .myFontSize {
+        font-size: 17px !important;
+    }
+</style>
+
+
+@using (Html.BeginForm())
+{
+    
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <script src="~/Scripts/CustomerScripts/jquery-3.2.1.min.js"></script>
+
+    <link href="~/Content/CustomerContent/Style/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CustomerContent/Style/style.css" rel="stylesheet" />
+    <link href="~/Content/CustomerContent/Style/responsive.css" rel="stylesheet" />
+    <link href="~/Content/CustomerContent/Style/custom.css" rel="stylesheet" />
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal contact-form-right">
+        <h4>Sign Up</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">First Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Middle Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Last Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Username</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Password</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Confirm Password</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control myFontSize", @required = "required", @type = "password"  } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-sm-12">
+            <div class="contact-form-right">
+                <div class="submit-button text-center">
+                    <a href="@Url.Action("Login", "Autheticator")">Login</a>
+                    <button class="btn hvr-hover" id="submit" type="submit">Sing Up</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="~/Scripts/CustomerScripts/baguetteBox.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/bootsnav.js"></script>
+    <script src="~/Scripts/CustomerScripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/CustomerScripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/contact-form-script.js"></script>
+    <script src="~/Scripts/CustomerScripts/custom.js"></script>
+    <script src="~/Scripts/CustomerScripts/form-validator.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/images-loded.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/inewsticker.js"></script>
+    <script src="~/Scripts/CustomerScripts/isotope.min.js"></script>
+
+    <script src="~/Scripts/CustomerScripts/jquery.superslides.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/CustomerScripts/popper.min.js"></script>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

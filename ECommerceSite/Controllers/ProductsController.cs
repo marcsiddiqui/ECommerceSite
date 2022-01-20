@@ -72,26 +72,6 @@ namespace ECommerceSite.Controllers
             return View(productlist);
         }
 
-        // GET: Products/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (Authentication.GetSessionDetail() == null)
-            {
-                return RedirectToAction("Login", "Autheticator");
-            }
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
         #endregion
 
         #region Create
@@ -103,7 +83,10 @@ namespace ECommerceSite.Controllers
             {
                 return RedirectToAction("Login", "Autheticator");
             }
-            return View();
+            var model = new ProductModel();
+            PrepareCategoryDropdown(model);
+
+            return View(model);
         }
 
         // POST: Products/Create
@@ -125,10 +108,9 @@ namespace ECommerceSite.Controllers
                 product.CostPrice = model.CostPrice;
                 product.SalePrice = model.SalePrice;
                 product.OutOfStock = model.OutOfStock;
-
+                product.CategoryId = model.CategoryId;
                 product.CreatedOnUtc = DateTime.UtcNow;
-                product.CreatedBy = 1;
-
+                product.CreatedBy = Convert.ToInt32(Session["UserId"]);
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -155,9 +137,32 @@ namespace ECommerceSite.Controllers
             Product product = db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
-            return View(product);
+
+            var category = db.Categories.Where(x => !x.Deleted && x.Id == product.CategoryId).FirstOrDefault();
+
+            var model = new ProductModel();
+            model.Id = product.Id;
+            model.Name = product.Name;
+            model.Description = product.Description;
+            model.CategoryId = product.CategoryId;
+            if (category != null)
+            {
+                model.CategoryName = category.Name;
+            }
+            model.SupplierId = product.SupplierId;
+            model.SalePrice = product.SalePrice;
+            model.CostPrice = product.CostPrice;
+            model.CreatedBy = product.CreatedBy;
+            model.CreatedOnUtc = product.CreatedOnUtc;
+            model.UpdatedBy = product.UpdatedBy;
+            model.Deleted = product.Deleted;
+            model.OutOfStock = product.OutOfStock;
+
+            PrepareCategoryDropdown(model);
+
+            return View(model);
         }
 
         // POST: Products/Edit/5
@@ -165,7 +170,7 @@ namespace ECommerceSite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,SupplierId,SalePrice,CostPrice,CreatedBy,CreatedOnUtc,UpdatedBy,UpdatedOnUtc,Deleted,OutOfStock")] Product product)
+        public ActionResult Edit(ProductModel model)
         {
             if (Authentication.GetSessionDetail() == null)
             {
@@ -173,11 +178,33 @@ namespace ECommerceSite.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                var product = db.Products.Where(x => !x.Deleted && x.Id == model.Id).FirstOrDefault();
+                if (product == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                product.Name = model.Name;
+                product.Description = model.Description;
+                product.CostPrice = model.CostPrice;
+                product.SalePrice = model.SalePrice;
+                product.OutOfStock = model.OutOfStock;
+                product.CategoryId = model.CategoryId;
+                product.UpdatedOnUtc = DateTime.UtcNow;
+                product.UpdatedBy = Convert.ToInt32(Session["UserId"]);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(model);
+        }
+
+        public void PrepareCategoryDropdown(ProductModel model)
+        {
+            var categories = db.Categories.Where(x => !x.Deleted).ToList();
+            model.CategoriesDropDown.Add(new SelectListItem { Text = "Select Category", Value = "0" });
+            foreach (var categpry in categories)
+            {
+                model.CategoriesDropDown.Add(new SelectListItem { Text = categpry.Name, Value = categpry.Id.ToString(), Selected = model.CategoryId == categpry.Id });
+            }
         }
 
         #endregion
@@ -198,9 +225,12 @@ namespace ECommerceSite.Controllers
             Product product = db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
-            return View(product);
+            product.Deleted = true;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Products/Delete/5

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ECommerceSite.Models
 {
@@ -9,7 +10,7 @@ namespace ECommerceSite.Models
     {
         public ProductModel()
         {
-
+            CategoriesDropDown = new List<SelectListItem>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -26,5 +27,6 @@ namespace ECommerceSite.Models
         public DateTime? UpdatedOnUtc { get; set; }
         public bool Deleted { get; set; }
         public bool OutOfStock { get; set; }
+        public List<SelectListItem> CategoriesDropDown { get; set; }
     }
 }
