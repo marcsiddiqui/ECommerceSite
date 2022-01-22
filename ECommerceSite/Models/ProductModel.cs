@@ -28,6 +28,5 @@ namespace ECommerceSite.Models
         public bool Deleted { get; set; }
         public bool OutOfStock { get; set; }
         public List<SelectListItem> CategoriesDropDown { get; set; }
-        public string ImgSrc { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -95,7 +94,7 @@ namespace ECommerceSite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductModel model, HttpPostedFileBase file)
+        public ActionResult Create(ProductModel model)
         {
             if (Authentication.GetSessionDetail() == null)
             {
@@ -114,18 +113,6 @@ namespace ECommerceSite.Controllers
                 product.CreatedBy = Convert.ToInt32(Session["UserId"]);
                 db.Products.Add(product);
                 db.SaveChanges();
-
-                var filePath = file.ToString(); //getting complete url  
-                var fileName = Path.GetFileName(file.FileName); //getting only file name(ex-ganesh.jpg)  
-                var ext = Path.GetExtension(file.FileName); //getting the extension(ex-.jpg)  
-                string name = Path.GetFileNameWithoutExtension(fileName); //getting file name without extension  
-                string myfile = product.Id + ext; //appending the name with id  
-                // store the file inside ~/project folder(Img)  
-                var path = Path.Combine(Server.MapPath("~/WebContent/ProductImg"), myfile);
-                product.ImageUrl = path;
-                file.SaveAs(path);
-                db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
 
@@ -319,7 +306,6 @@ namespace ECommerceSite.Controllers
                     productModel.SupplierName = "Mushtaq";
                     productModel.Deleted = product.Deleted;
                     productModel.OutOfStock = product.OutOfStock;
-                    productModel.ImgSrc = product.ImageUrl;
 
                     productlist.Add(productModel);
                 }

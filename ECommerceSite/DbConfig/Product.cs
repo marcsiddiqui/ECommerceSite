@@ -27,6 +27,5 @@ namespace ECommerceSite.DbConfig
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
         public bool Deleted { get; set; }
         public bool OutOfStock { get; set; }
-        public string ImageUrl { get; set; }
     }
 }
