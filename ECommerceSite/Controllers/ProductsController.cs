@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -94,7 +95,7 @@ namespace ECommerceSite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductModel model)
+        public ActionResult Create(ProductModel model, HttpPostedFileBase file)
         {
             if (Authentication.GetSessionDetail() == null)
             {
@@ -113,6 +114,15 @@ namespace ECommerceSite.Controllers
                 product.CreatedBy = Convert.ToInt32(Session["UserId"]);
                 db.Products.Add(product);
                 db.SaveChanges();
+
+                var ext = Path.GetExtension(file.FileName); //getting the extension(ex-.jpg)  
+                string myfile = product.Id + ext; //appending the name with id  
+                var path = Path.Combine(Server.MapPath("~/WebContent/Products"), myfile);
+                file.SaveAs(path);
+
+                product.ImagePath = path;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
