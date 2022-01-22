@@ -2,23 +2,21 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLoginSignUo.cshtml";
 }
 
-<h2>Login</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>User</h4>
+        <h4 style="text-align: center; font-size: 36px">Login</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
@@ -26,21 +24,22 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-                <a href="@Url.Action("SignUp", "Autheticator")" class="btn btn-default">Sign Up</a>
+            <div class="col-md-12">
+                <div class="button_block">
+                    <div>
+                        <button type="submit" class="col-md-6 btn cur-p btn-success" style="float: left">Login</button>
+                        <a href="@Url.Action("SignUp", "Autheticator")" class="col-md-6 btn cur-p btn-outline-success" style="float: right">Sign Up</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

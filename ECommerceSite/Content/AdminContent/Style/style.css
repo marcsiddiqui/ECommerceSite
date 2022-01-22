@@ -1671,7 +1671,7 @@ a[data-toggle="collapse"] {
 -------------------------------------------------------------------*/
 
 .dash_head {
-    background-image: url('images/layout_img/pattern_h.png');
+    background-image: url('../Content/layout_img/pattern_h.png');
     font-weight: normal;
     height: auto;
     border-radius: 5px 5px 0 0;
@@ -3277,7 +3277,7 @@ table.projects tr td:first-child {
 }
 
 .logo_login {
-    background: url('images/layout_img/login_image.jpg');
+    background: url('../Content/layout_img/login_image.jpg');
     padding: 50px 0;
     background-position: center center;
     position: relative;

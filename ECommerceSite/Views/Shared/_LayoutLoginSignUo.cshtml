@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/style.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/responsive.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/color_2.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/bootstrap-select.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/Style/custom.css" />
+    <link href="~/Content/AdminContent/Style/semantic.min.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="inner_page login">
+    <div class="full_container">
+        <div class="container">
+            <div class="center verticle_center full_height">
+                <div class="login_section">
+                    <div class="logo_login">
+                        <div class="center">
+                            <img width="210" src="~/Content/AdminContent/Content/logo/logo.png" alt="#" />
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/AdminScripts/jquery.min.js"></script>
+    <script src="~/Scripts/AdminScripts/popper.min.js"></script>
+    <script src="~/Scripts/AdminScripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/AdminScripts/animate.js"></script>
+    <script src="~/Scripts/AdminScripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/AdminScripts/perfect-scrollbar.min.js"></script>
+    <script src="~/Scripts/AdminScripts/custom.js"></script>
+</body>
+</html>
