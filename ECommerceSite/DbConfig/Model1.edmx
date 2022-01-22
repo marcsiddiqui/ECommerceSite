@@ -34,6 +34,7 @@
           <Property Name="UpdatedOnUtc" Type="datetime" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="OutOfStock" Type="bit" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
@@ -111,6 +112,7 @@
           <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="OutOfStock" Type="Boolean" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -162,6 +164,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ECommerceSiteModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="OutOfStock" ColumnName="OutOfStock" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
