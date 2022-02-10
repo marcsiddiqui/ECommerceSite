@@ -15,17 +15,22 @@ using Newtonsoft.Json;
 
 namespace ECommerceSite.Controllers
 {
+    //fatima first change
     //maaz first change
     // fghfgh
     //change by Osyed
+    // My Changes
     public class ProductsController : Controller
     {
+        // first change from mahira
         // first change from muzammil.
         // second change from muzammil.
+        // silly mistakes
+        // silly mistakes
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
-        //first change tanzeela
+       //first change tanzeela
 
         //vvvvvv   //sdfsdf
         #region AdminArea
