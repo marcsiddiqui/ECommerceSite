@@ -23,11 +23,8 @@ namespace ECommerceSite.Controllers
         // first change from muzammil.
         //hafsa first change
         //lkj
-<<<<<<< HEAD
         //ItxNoob
-=======
         //first change hafsa
->>>>>>> a5f0c1308d006bb7e99432036d2fabd2071fb431
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
