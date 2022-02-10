@@ -20,8 +20,8 @@ namespace ECommerceSite.Controllers
     //change by Osyed
     public class ProductsController : Controller
     {
+        // first change from mahira
         // first change from muzammil.
-        //hafsa first change
         //lkj
         //ItxNoob
         //first change hafsa
@@ -31,6 +31,15 @@ namespace ECommerceSite.Controllers
 
 
         //first change Moiza
+
+
+
+        //first change Moiza
+
+
+
+
+        // silly mistakes
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
@@ -409,6 +418,7 @@ namespace ECommerceSite.Controllers
         }
         //sdfsdf
         #endregion
+        //First change Arham
     }
 }
 
