@@ -8,7 +8,7 @@ namespace ECommerceSite.Controllers
 {
     public class HomeController : Controller
     {
-        
+        //First change Arham
         public ActionResult Index()
         {
             return View();
@@ -16,11 +16,11 @@ namespace ECommerceSite.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your App description page.";
 
             return View();
         }
-
+        //Contact Info
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
