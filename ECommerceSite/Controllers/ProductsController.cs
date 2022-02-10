@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace ECommerceSite.Controllers
 {
-    // fdfgdfg
+    // fghfgh
     public class ProductsController : Controller
     {
         // first change from muzammil.
