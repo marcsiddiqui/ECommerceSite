@@ -15,8 +15,11 @@ using Newtonsoft.Json;
 
 namespace ECommerceSite.Controllers
 {
+    // fghfgh
     public class ProductsController : Controller
     {
+        // first change from muzammil.
+        //lkj
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
