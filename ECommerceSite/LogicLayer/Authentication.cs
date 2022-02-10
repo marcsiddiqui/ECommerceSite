@@ -37,18 +37,19 @@ namespace ECommerceSite.LogicLayer
         {
             try
             {
-                if (HttpContext.Current.Session["UserName"] != null && 
-                    !string.IsNullOrWhiteSpace(HttpContext.Current.Session["UserName"].ToString()))
-                {
-                    SessionDetail obj = new SessionDetail();
-                    obj.UserName = HttpContext.Current.Session["UserName"].ToString();
-                    obj.UserId = Convert.ToInt32(HttpContext.Current.Session["UserId"]);
-                    obj.Email = HttpContext.Current.Session["Email"].ToString();
-                    obj.FullName = HttpContext.Current.Session["FullName"].ToString();
-                    obj.IsAdmin = Convert.ToBoolean(HttpContext.Current.Session["IsAdmin"]);
-                    obj.LastLoginDate = Convert.ToDateTime(HttpContext.Current.Session["LastLoginonUtc"]);
-                    return obj;
-                }
+                return new SessionDetail();
+                //if (HttpContext.Current.Session["UserName"] != null && 
+                //    !string.IsNullOrWhiteSpace(HttpContext.Current.Session["UserName"].ToString()))
+                //{
+                //    SessionDetail obj = new SessionDetail();
+                //    obj.UserName = HttpContext.Current.Session["UserName"].ToString();
+                //    obj.UserId = Convert.ToInt32(HttpContext.Current.Session["UserId"]);
+                //    obj.Email = HttpContext.Current.Session["Email"].ToString();
+                //    obj.FullName = HttpContext.Current.Session["FullName"].ToString();
+                //    obj.IsAdmin = Convert.ToBoolean(HttpContext.Current.Session["IsAdmin"]);
+                //    obj.LastLoginDate = Convert.ToDateTime(HttpContext.Current.Session["LastLoginonUtc"]);
+                //    return obj;
+                //}
             }
             catch 
             {
