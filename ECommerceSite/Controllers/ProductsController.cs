@@ -18,6 +18,7 @@ namespace ECommerceSite.Controllers
     {
         // first change from muzammil.
         //lkj
+        //first change hafsa
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
 
         #region AdminArea
