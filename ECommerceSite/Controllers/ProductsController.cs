@@ -31,6 +31,15 @@ namespace ECommerceSite.Controllers
 
 
         //first change Moiza
+
+
+
+
+
+
+
+
+        // silly mistakes
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
