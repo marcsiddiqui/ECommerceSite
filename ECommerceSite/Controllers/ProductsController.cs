@@ -25,8 +25,9 @@ namespace ECommerceSite.Controllers
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
-        //sdfsdf
+        //first change tanzeela
 
+        //vvvvvv   //sdfsdf
         #region AdminArea
 
         #region List
@@ -286,7 +287,7 @@ namespace ECommerceSite.Controllers
             }
             base.Dispose(disposing);
         }
-
+       // my changes
         #endregion
         //sdfsdf
         #endregion
@@ -399,6 +400,7 @@ namespace ECommerceSite.Controllers
         }
         //sdfsdf
         #endregion
+        //First change Arham
     }
 }
 
