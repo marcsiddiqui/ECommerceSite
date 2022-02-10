@@ -13,7 +13,7 @@ using ECommerceSite.Models;
 
 namespace ECommerceSite.Controllers
 {
-    // fghfgh
+    // fdfgdfg
     public class ProductsController : Controller
     {
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
