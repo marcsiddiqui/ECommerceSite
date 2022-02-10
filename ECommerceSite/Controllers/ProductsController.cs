@@ -10,16 +10,19 @@ using System.Web.Mvc;
 using ECommerceSite.DbConfig;
 using ECommerceSite.LogicLayer;
 using ECommerceSite.Models;
+using ECommerceSite.ECommerceGPPDOperations;
+using Newtonsoft.Json;
 
 namespace ECommerceSite.Controllers
 {
-    // fghfgh
+    // fdfgdfg
     public class ProductsController : Controller
     {
         // first change from muzammil.
         //lkj
         //first change hafsa
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
+        GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
         #region AdminArea
 
@@ -33,7 +36,12 @@ namespace ECommerceSite.Controllers
                 return RedirectToAction("Login", "Autheticator");
             }
 
-            var products = db.Products.Where(x => !x.Deleted).ToList();
+            var productJson = soap.GetAllProducts();
+
+            var products = JsonConvert.DeserializeObject<List<Product>>(productJson);
+
+            // db.Products.Where(x => !x.Deleted).ToList();
+
             var categories = db.Categories.Where(x => !x.Deleted).ToList();
 
             var productlist = new List<ProductModel>();
@@ -116,16 +124,22 @@ namespace ECommerceSite.Controllers
                 product.CategoryId = model.CategoryId;
                 product.CreatedOnUtc = DateTime.UtcNow;
                 product.CreatedBy = Convert.ToInt32(Session["UserId"]);
-                db.Products.Add(product);
-                db.SaveChanges();
+                product.ImagePath = "";
 
-                var ext = Path.GetExtension(file.FileName); //getting the extension(ex-.jpg)  
-                string myfile = product.Id + ext; //appending the name with id  
-                var path = Path.Combine(Server.MapPath("~/WebContent/Products"), myfile);
-                file.SaveAs(path);
+                var productJson = JsonConvert.SerializeObject(product);
 
-                product.ImagePath = path;
-                db.SaveChanges();
+                soap.InsertProduct(productJson);
+
+                //db.Products.Add(product);
+                //db.SaveChanges();
+
+                //var ext = Path.GetExtension(file.FileName); //getting the extension(ex-.jpg)  
+                //string myfile = product.Id + ext; //appending the name with id  
+                //var path = Path.Combine(Server.MapPath("~/WebContent/Products"), myfile);
+                //file.SaveAs(path);
+
+                //product.ImagePath = path;
+                //db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -205,7 +219,12 @@ namespace ECommerceSite.Controllers
                 product.CategoryId = model.CategoryId;
                 product.UpdatedOnUtc = DateTime.UtcNow;
                 product.UpdatedBy = Convert.ToInt32(Session["UserId"]);
-                db.SaveChanges();
+
+                var productJson = JsonConvert.SerializeObject(product);
+                soap.UpdateProduct(productJson);
+
+
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -236,13 +255,7 @@ namespace ECommerceSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return RedirectToAction("Index");
-            }
-            product.Deleted = true;
-            db.SaveChanges();
+            soap.DeleteProduct(id.Value);
 
             return RedirectToAction("Index");
         }
@@ -320,6 +333,7 @@ namespace ECommerceSite.Controllers
                     productModel.SupplierName = "Mushtaq";
                     productModel.Deleted = product.Deleted;
                     productModel.OutOfStock = product.OutOfStock;
+                    productModel.ImagePath = "/WebContent/Products/" + product.Id + Path.GetExtension(product.ImagePath);
 
                     productlist.Add(productModel);
                 }

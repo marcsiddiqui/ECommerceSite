@@ -57,6 +57,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -128,6 +129,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\ECommerceGPPDOperations\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AdminDashboardController.cs" />
     <Compile Include="Controllers\AutheticatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -169,6 +175,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.GetAllCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.GetAllProductsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.GetAllServicesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.GetAllUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.InsertProductResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.UpdateProductResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ECommerceGPPDOperations\ECommerceSite.ECommerceGPPDOperations.DeleteProductResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ECommerceGPPDOperations\GPPD_Service.disco" />
+    <None Include="Connected Services\ECommerceGPPDOperations\configuration91.svcinfo" />
+    <None Include="Connected Services\ECommerceGPPDOperations\configuration.svcinfo" />
+    <None Include="Connected Services\ECommerceGPPDOperations\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\AdminContent\Content\landing_page\stack-of-three-black-hot-stones-spa-salon-vector-16122479.jpg" />
     <Content Include="Content\AdminContent\Content\layout_img\american-express.png" />
     <Content Include="Content\AdminContent\Content\layout_img\bg1.png" />
@@ -385,6 +419,7 @@
     <Content Include="fonts\CustomerFonts\fa-solid-900.ttf" />
     <Content Include="fonts\CustomerFonts\fa-solid-900.woff" />
     <Content Include="fonts\CustomerFonts\fa-solid-900.woff2" />
+    <None Include="Connected Services\ECommerceGPPDOperations\GPPD_Service.wsdl" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\CustomerScripts\baguetteBox.min.js" />
     <Content Include="Scripts\CustomerScripts\bootsnav.js" />
@@ -444,6 +479,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="WebContent\Products\" />
+    <Folder Include="WebServices\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -460,6 +496,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ECommerceGPPDOperations\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
