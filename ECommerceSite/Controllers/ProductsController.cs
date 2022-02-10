@@ -17,6 +17,7 @@ namespace ECommerceSite.Controllers
     public class ProductsController : Controller
     {
         // first change from muzammil.
+        //lkj
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
 
         #region AdminArea
