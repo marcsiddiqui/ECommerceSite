@@ -20,6 +20,7 @@ namespace ECommerceSite.Controllers
     {
         // first change from muzammil.
         //lkj
+        //Change By Noob
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
