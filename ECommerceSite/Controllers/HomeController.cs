@@ -20,7 +20,7 @@ namespace ECommerceSite.Controllers
 
             return View();
         }
-
+        //Contact Info
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
