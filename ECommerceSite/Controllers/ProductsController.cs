@@ -15,10 +15,12 @@ using Newtonsoft.Json;
 
 namespace ECommerceSite.Controllers
 {
+    //maaz first change
     // fghfgh
     public class ProductsController : Controller
     {
         // first change from muzammil.
+        //hafsa first change
         //lkj
 <<<<<<< HEAD
         //ItxNoob
@@ -27,6 +29,8 @@ namespace ECommerceSite.Controllers
 >>>>>>> a5f0c1308d006bb7e99432036d2fabd2071fb431
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
+
+        //sdfsdf
 
         #region AdminArea
 
@@ -90,7 +94,7 @@ namespace ECommerceSite.Controllers
         }
 
         #endregion
-
+        //sdfsdf
         #region Create
 
         // GET: Products/Create
@@ -152,7 +156,7 @@ namespace ECommerceSite.Controllers
         }
 
         #endregion
-
+        //sdfsdf
         #region Eidt
 
         // GET: Products/Edit/5
@@ -245,7 +249,7 @@ namespace ECommerceSite.Controllers
         }
 
         #endregion
-
+        //sdfsdf
         #region Delete
 
         // GET: Products/Delete/5
@@ -289,11 +293,11 @@ namespace ECommerceSite.Controllers
         }
 
         #endregion
-
+        //sdfsdf
         #endregion
-
+        //sdfsdf
         #region CustomerArea
-
+        //sdfsfdsf
         public ActionResult Menu()
         {
             if (Authentication.GetSessionDetail() == null)
@@ -345,7 +349,7 @@ namespace ECommerceSite.Controllers
 
             return View(productlist);
         }
-
+        //sdfsdf
         [HttpPost]
         public JsonResult AddToCart(int productId, int qty)
         {
@@ -387,8 +391,8 @@ namespace ECommerceSite.Controllers
             }
             return Json("0", JsonRequestBehavior.AllowGet);
         }
-
-
+        //sdfsdf
+        //sdfsdf
         public ActionResult Cart()
         {
             if (Authentication.GetSessionDetail() == null)
@@ -398,7 +402,7 @@ namespace ECommerceSite.Controllers
 
             return View();
         }
-
+        //sdfsdf
         #endregion
     }
 }
