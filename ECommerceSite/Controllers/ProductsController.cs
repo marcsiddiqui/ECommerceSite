@@ -17,12 +17,20 @@ namespace ECommerceSite.Controllers
 {
     //maaz first change
     // fghfgh
+    //change by Osyed
     public class ProductsController : Controller
     {
         // first change from muzammil.
         //hafsa first change
         //lkj
-        //sdfsd
+        //ItxNoob
+        //first change hafsa
+
+
+
+
+
+        //first change Moiza
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
@@ -288,7 +296,7 @@ namespace ECommerceSite.Controllers
             }
             base.Dispose(disposing);
         }
-
+       // my changes
         #endregion
         //sdfsdf
         #endregion
