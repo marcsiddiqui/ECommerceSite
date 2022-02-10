@@ -32,6 +32,15 @@ namespace ECommerceSite.Controllers
 
 
         //first change Moiza
+
+
+
+        //first change Moiza
+
+
+
+
+        // silly mistakes
         private ECommerceSiteEntities db = new ECommerceSiteEntities();
         GPPD_ServiceSoapClient soap = new GPPD_ServiceSoapClient();
 
@@ -410,6 +419,7 @@ namespace ECommerceSite.Controllers
         }
         //sdfsdf
         #endregion
+        //First change Arham
     }
 }
 
